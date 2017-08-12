@@ -40,17 +40,17 @@ class DiveCalculator
     const OFF_REPETITIVE_CHART = 'Your dive plan is not compatible with the repetitive dive chart';
 
     /**
-     * @var array depths used for calculations for table 1, to get initial pressure group
+     * @var     array   depths used for calculations for table 1, to get initial pressure group
      */
     private $table_depths = [35, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140];
 
     /**
-     * @var array the Pressure Groups, used in calculations with table 2
+     * @var     array   the Pressure Groups, used in calculations with table 2
      */
     private $table_groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
     /**
-     * @var array PADI Dive Table 1, calculates pressure group after a dive to a certain depth for a certain time
+     * @var     array   PADI Dive Table 1, calculates pressure group after a dive to a certain depth for a certain time
      * keys are pressure groups, values are bottom times
      */
     private $table_one = [
@@ -82,7 +82,7 @@ class DiveCalculator
     ];
 
     /**
-     * @var array PADI Dive Table 2, calculates new pressure group after a suface interval
+     * @var     array   PADI Dive Table 2, calculates new pressure group after a suface interval
      * key is the starting PG, values are surface interval times
      */
     private $table_two = [
@@ -115,7 +115,7 @@ class DiveCalculator
     ];
 
     /**
-     * @var array PADI Dive Table 3, Residual Nitrogen Times
+     * @var     array   PADI Dive Table 3, Residual Nitrogen Times
      */
     private $table_three = [
         35  => [10, 19, 25, 29, 32, 36, 40, 44, 48, 52, 57, 62, 67, 73, 79, 85, 92, 100, 108, 117, 127, 139, 152, 168, 188, 205],
@@ -132,13 +132,13 @@ class DiveCalculator
     ];
 
     /**
-     * @param int $depth maximum depth
-     * @param $time int bottom time
-     * @param null $residual_time for calculating a repetitive dive, RNT obtained from table 3
-     * @return string
+     * @param   int $depth maximum depth
+     * @param   int $time bottom time
+     * @param   int $residual_time for calculating a repetitive dive, RNT obtained from table 3
+     * @return  string
      */
-    public function getPressureGroup($depth, $time, $residual_time = null) {
-        if (!is_numeric($depth) || !is_numeric($time) || (!is_numeric($residual_time) && null !== $residual_time)) {
+    public function getPressureGroup($depth, $time, $residual_time = 0) {
+        if (!is_numeric($depth) || !is_numeric($time) || !is_numeric($residual_time)) {
             return $this::NOT_NUMERIC;
         }
         $time += $residual_time;
@@ -165,9 +165,9 @@ class DiveCalculator
     }
 
     /**
-     * @param string $starting_group Pressure group from table 1
-     * @param int $surface_interval time between dives in minutes
-     * @return string new PG or no residual message
+     * @param   string $starting_group Pressure group from table 1
+     * @param   int $surface_interval time between dives in minutes
+     * @return  string  new PG or no residual message
      */
     public function getNewPressureGroup($starting_group, $surface_interval) {
         if (!ctype_alpha($starting_group) || strlen($starting_group) !== 1) {
@@ -195,9 +195,9 @@ class DiveCalculator
     }
 
     /**
-     * @param string $pressure_group PG after SI
-     * @param int $depth planned depth
-     * @return mixed either RNT or error message
+     * @param   string $pressure_group PG after SI
+     * @param   int $depth planned depth
+     * @return  mixed   either RNT or error message
      */
     public function getResidualNitrogenTime($pressure_group, $depth) {
         if (!ctype_alpha($pressure_group) || strlen($pressure_group) !== 1) {
@@ -227,12 +227,12 @@ class DiveCalculator
 
 
     /**
-     * @param $depth integer dive depth
-     * @param $rnt int optional residual nitrogen time from previous dive
-     * @return mixed
+     * @param   int $depth dive depth
+     * @param   int $residual_time optional residual nitrogen time from previous dive
+     * @return  mixed
      */
-    public function getMaxBottomTime($depth, $rnt = 0) {
-        if (!is_numeric($depth) || (!is_numeric($rnt) && null !== $rnt)) {
+    public function getMaxBottomTime($depth, $residual_time = 0) {
+        if (!is_numeric($depth) || !is_numeric($residual_time)) {
             return $this::NOT_NUMERIC;
         }
         $table_depths = $this->getTableDepths();
@@ -257,7 +257,7 @@ class DiveCalculator
             }
         }
 
-        return $max_time - $rnt;
+        return $max_time - $residual_time;
     }
 
     /**
