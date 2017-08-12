@@ -7,7 +7,7 @@ made using this package.**
 
 **All divers should perform and check their own calculations with approved charts or devices.**
 
-###Installation
+### Installation
 This package is not on packagist yet, so you will need to add the following information to your composer.json file.
 
 Create or add to your repositories section:
@@ -32,7 +32,7 @@ composer update
 ```
 And you should be good to go.
 
-###Simple Usage
+### Simple Usage
 Pardon the formating, markdown and all.
 
 All times should be in minutes, all depths in feet.  I'm in the US, so only Imperial for now.
@@ -46,7 +46,7 @@ $pressuregroup = $diveCalculator->getPressureGroup($depth, $time);
 
 ```
 
-###Available Methods
+### Available Methods
 getPressureGroup($depth, $time, $residual_time = null)
 
 getNewPressureGroup($starting_group, $surface_interval)
