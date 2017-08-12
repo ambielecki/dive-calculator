@@ -1,0 +1,19 @@
+{
+  "name": "ambielecki/DiveCalculator",
+  "description": "A Laravel Package to Calculate Dive Stats from the PADI RDP",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Andrew Bielecki",
+      "email": "missitnoonan@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ambielecki\\DiveCalculator\\": "src/"
+    }
+  }
+}
