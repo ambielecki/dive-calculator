@@ -8,17 +8,11 @@ made using this package.**
 **All divers should perform and check their own calculations with approved charts or devices.**
 
 ### Installation
-This package is not on packagist yet, so you will need to add the following information to your composer.json file.
+The easiest way to is through composer
+```
+composer require ambielecki/divecalculator
+```
 
-Create or add to your repositories section:
-```
-"repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/ambielecki/dive-calculator"
-    }
-]
-```
 In your require section add:
 ```
 "require": {
