@@ -1,5 +1,5 @@
 {
-  "name": "ambielecki/DiveCalculator",
+  "name": "ambielecki/dive-calculator",
   "description": "A Laravel Package to Calculate Dive Stats from the PADI RDP",
   "license": "MIT",
   "authors": [
