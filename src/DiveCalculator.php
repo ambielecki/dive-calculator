@@ -228,7 +228,7 @@ class DiveCalculator
 
     /**
      * @param   int     $depth dive depth
-     * @param   int     $rnt  optional residual nitrogen time from previous dive
+     * @param   int     $residual_time  optional residual nitrogen time from previous dive
      * @return  mixed
      */
     public function getMaxBottomTime($depth, $residual_time = 0) {
