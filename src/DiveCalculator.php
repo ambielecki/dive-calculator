@@ -10,6 +10,11 @@ namespace Ambielecki\DiveCalculator;
 class DiveCalculator
 {
     /**
+     * message for non numeric inputs
+     */
+    const NOT_NUMERIC = 'Only numeric values are accepted for time and depth';
+
+    /**
      * message if dive was longer than allowed at a given maximum depth
      */
     const OVER_NDL = 'You have exceeded the NDL at the specified depth.';
@@ -128,6 +133,9 @@ class DiveCalculator
      * @return string
      */
     public function getPressureGroup($depth, $time, $residual_time = null) {
+        if (!is_numeric($depth) || !is_numeric($time) || (!is_numeric($residual_time) && null !== $residual_time)) {
+            return $this::NOT_NUMERIC;
+        }
         $time += $residual_time;
         $table_depths = $this->getTableDepths();
         $depth_key = null;
