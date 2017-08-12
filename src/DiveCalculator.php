@@ -132,9 +132,9 @@ class DiveCalculator
     ];
 
     /**
-     * @param   int     $depth           maximum depth
-     * @param   int     $time            bottom time
-     * @param   int     $residual_time   for calculating a repetitive dive, RNT obtained from table 3
+     * @param   int $depth maximum depth
+     * @param   int $time bottom time
+     * @param   int $residual_time for calculating a repetitive dive, RNT obtained from table 3
      * @return  string
      */
     public function getPressureGroup($depth, $time, $residual_time = 0) {
@@ -165,8 +165,8 @@ class DiveCalculator
     }
 
     /**
-     * @param   string  $starting_group Pressure group from table 1
-     * @param   int     $surface_interval time between dives in minutes
+     * @param   string $starting_group Pressure group from table 1
+     * @param   int $surface_interval time between dives in minutes
      * @return  string  new PG or no residual message
      */
     public function getNewPressureGroup($starting_group, $surface_interval) {
@@ -195,8 +195,8 @@ class DiveCalculator
     }
 
     /**
-     * @param   string  $pressure_group PG after SI
-     * @param   int     $depth planned depth
+     * @param   string $pressure_group PG after SI
+     * @param   int $depth planned depth
      * @return  mixed   either RNT or error message
      */
     public function getResidualNitrogenTime($pressure_group, $depth) {
@@ -227,8 +227,8 @@ class DiveCalculator
 
 
     /**
-     * @param   int     $depth dive depth
-     * @param   int     $residual_time  optional residual nitrogen time from previous dive
+     * @param   int $depth dive depth
+     * @param   int $residual_time optional residual nitrogen time from previous dive
      * @return  mixed
      */
     public function getMaxBottomTime($depth, $residual_time = 0) {
