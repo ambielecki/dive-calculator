@@ -1,6 +1,6 @@
 # DiveCalculator
 
-## A Laravel Package to Calculate Dive Stats from the PADI RDP
+## A PHP  Package to Calculate Dive Stats from the PADI RDP
 
 **This package is for informational use only, the author accepts no liability for calculations
 made using this package.**
@@ -8,12 +8,12 @@ made using this package.**
 **All divers should perform and check their own calculations with approved charts or devices.**
 
 ### Installation
-The easiest way to is through composer
+The easiest way to install is through composer
 ```
 composer require ambielecki/divecalculator
 ```
 
-In your require section add:
+Or in your require section add:
 ```
 "require": {
     "ambielecki/dive-calculator": "1.*"
