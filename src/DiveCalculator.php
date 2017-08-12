@@ -15,6 +15,11 @@ class DiveCalculator
     const NOT_NUMERIC = 'Only numeric values are accepted for time and depth';
 
     /**
+     * message for incorrect Pressure Group format
+     */
+    const INVALID_PG = 'Pressure Group must be a single letter';
+
+    /**
      * message if dive was longer than allowed at a given maximum depth
      */
     const OVER_NDL = 'You have exceeded the NDL at the specified depth.';
@@ -165,6 +170,13 @@ class DiveCalculator
      * @return string new PG or no residual message
      */
     public function getNewPressureGroup($starting_group, $surface_interval) {
+        if (!ctype_alpha($starting_group) || strlen($starting_group) !== 1) {
+            return $this::INVALID_PG;
+        }
+        if (!is_numeric($surface_interval)) {
+            return $this::NOT_NUMERIC;
+        }
+        $starting_group = strtoupper($starting_group);
         $pressure_groups = $this->getTableGroups();
         $table_times = $this->getTableTwo();
         $times = $table_times[strtoupper($starting_group)];
@@ -188,6 +200,13 @@ class DiveCalculator
      * @return mixed either RNT or error message
      */
     public function getResidualNitrogenTime($pressure_group, $depth) {
+        if (!ctype_alpha($pressure_group) || strlen($pressure_group) !== 1) {
+            return $this::INVALID_PG;
+        }
+        if (!is_numeric($depth)) {
+            return $this::NOT_NUMERIC;
+        }
+        $pressure_group = strtoupper($pressure_group);
         $pressure_groups = $this->getTableGroups();
         $nitrogen_times = $this->getTableThree();
         $pressure_key = null;
@@ -213,6 +232,9 @@ class DiveCalculator
      * @return mixed
      */
     public function getMaxBottomTime($depth, $rnt = 0) {
+        if (!is_numeric($depth) || (!is_numeric($rnt) && null !== $rnt)) {
+            return $this::NOT_NUMERIC;
+        }
         $table_depths = $this->getTableDepths();
         $depth_key = null;
         foreach ($table_depths as $key => $table_depth) {
