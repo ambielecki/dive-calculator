@@ -243,7 +243,7 @@ class DiveCalculator
                 break;
             }
         }
-        if (!$depth_key) {
+        if ($depth_key === null) {
             return $this::OVER_DEPTH;
         }
         $max_time = 0;
