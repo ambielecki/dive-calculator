@@ -3,7 +3,7 @@
 ## A PHP  Package to Calculate Dive Stats from the PADI RDP
 
 **This package is for informational use only, the author accepts no liability for calculations
-made using this package.**
+made using this package!**
 
 **All divers should perform and check their own calculations with approved charts or devices.**
 
